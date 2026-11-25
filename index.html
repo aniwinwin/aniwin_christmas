@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>나의 크리스마스 작전 파트너는?</title>
+  <link rel="stylesheet" href="style.css?v=fairies2" />
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-gradient"></div>
+    <div class="ambient-grid"></div>
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="sparkle sparkle-1">✦</div>
+    <div class="sparkle sparkle-2">✧</div>
+    <div class="sparkle sparkle-3">✦</div>
+    <div class="sparkle sparkle-4">✧</div>
+  </div>
+
+  <canvas id="snow-canvas" aria-hidden="true"></canvas>
+  <div class="fairy-layer" aria-hidden="true">
+    <div class="floating-fairy fairy-top-left"><img src="assets/fairy-1.png" alt="" draggable="false" /></div>
+    <div class="floating-fairy fairy-bottom-right"><img src="assets/fairy-2.png" alt="" draggable="false" /></div>
+  </div>
+  <main class="app" aria-live="polite">
+    <section id="start-screen" class="screen screen-start active">
+      <div class="start-shell">
+        <p class="eyebrow">ANIWIN CHRISTMAS MISSION</p>
+        <h1 class="start-title">
+          <span>나의 크리스마스</span>
+          <strong>작전 파트너는?</strong>
+        </h1>
+        <p class="start-subtitle">크리스마스 마을에서 함께할 친구를 찾아보세요.</p>
+
+        <div class="floating-names" aria-hidden="true">
+          <span>AIN</span><span>WAY</span><span>IVO</span><span>NEO</span>
+        </div>
+
+        <button type="button" id="start-btn" class="btn btn-primary">시작하기</button>
+      </div>
+    </section>
+
+    <section id="intro-screen" class="screen screen-vn">
+      <div class="vn-stage">
+        <div class="character-light" aria-hidden="true"></div>
+        <div class="noel-portrait-stage"><img class="noel-portrait" src="assets/noel-default.png" alt="산타 공방의 견습 요정 노엘" /></div>
+        <article id="intro-box" class="vn-box glass-card">
+          <header class="vn-header">
+            <div class="vn-avatar" aria-hidden="true">N</div>
+            <div>
+              <p class="vn-label">SANTA WORKSHOP</p>
+              <p class="vn-name">노엘</p>
+            </div>
+          </header>
+          <p id="intro-dialogue" class="vn-text"></p>
+          <div id="intro-input-wrap" class="vn-input-wrap hidden">
+            <input aria-label="이름 또는 크리스마스 소망" maxlength="80" type="text" id="intro-input" class="vn-input" autocomplete="off" />
+          </div>
+          <button type="button" id="intro-next-btn" class="btn btn-primary vn-next-btn">다음</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="quiz-screen" class="screen screen-quiz">
+      <div class="screen-content">
+        <div class="progress">
+          <span id="progress-text" class="progress-label">01 / 08</span>
+          <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+        </div>
+
+        <article id="question-card" class="question-card glass-card">
+          <p class="quiz-kicker">CHRISTMAS MISSION</p>
+          <p id="question-text" class="question-text"></p>
+        </article>
+
+        <div class="answer-buttons answer-buttons--four">
+          <button type="button" class="btn btn-choice" data-choice="0"></button>
+          <button type="button" class="btn btn-choice" data-choice="1"></button>
+          <button type="button" class="btn btn-choice" data-choice="2"></button>
+          <button type="button" class="btn btn-choice" data-choice="3"></button>
+        </div>
+        <div class="quiz-navigation"><button type="button" id="previous-question-btn" class="previous-question" hidden>← 이전 질문</button></div>
+      </div>
+    </section>
+
+    <section id="prelude-screen" class="screen screen-vn screen-prelude">
+      <div class="vn-stage">
+        <div class="character-light character-light-strong" aria-hidden="true"></div>
+        <div class="noel-portrait-stage"><img class="noel-portrait" src="assets/noel-default.png" alt="산타 공방의 견습 요정 노엘" /></div>
+        <article id="prelude-box" class="vn-box glass-card">
+          <header class="vn-header">
+            <div class="vn-avatar" aria-hidden="true">N</div>
+            <div>
+              <p class="vn-label">SANTA WORKSHOP</p>
+              <p class="vn-name">노엘</p>
+            </div>
+          </header>
+          <p id="prelude-dialogue" class="vn-text"></p>
+          <button type="button" id="prelude-next-btn" class="btn btn-primary vn-next-btn">다음</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="result-screen" class="screen screen-result">
+      <div class="screen-content result-content">
+        <div id="result-character" class="result-character" aria-hidden="true">
+          <div class="result-character-glow"></div>
+          <img id="result-character-image" class="result-character-image" src="" alt="" />
+          <div id="result-character-fallback" class="result-character-fallback"></div>
+        </div>
+
+        <article id="result-card" class="result-card glass-card">
+          <p class="result-heading">MATCHING COMPLETE</p>
+          <p class="result-subheading">나의 크리스마스 작전 파트너는...</p>
+          <h2 id="result-name" class="result-name"></h2>
+          <p id="result-description" class="result-description"></p>
+          <p id="result-extra" class="result-extra"></p>
+        </article>
+        <p class="result-footer">나와 꼭 맞는 파트너를 찾았다면,
+이제 함께 산타를 도우러 출발해 볼까요?</p>
+        <button type="button" id="retry-btn" class="btn btn-secondary">다시 만나기</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js?v=fairies2"></script>
+  <script src="snow.js?v=fairies2"></script>
+</body>
+</html>
